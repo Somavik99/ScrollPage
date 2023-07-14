@@ -7,28 +7,30 @@ import { useEffect, useState } from "react";
 
 const HomePage = () => {
   const [Current, setCurrent] = useState(0);
-  // const [ImageState, setImageState] = useState(AllImage[Current]);
 
   const ArrLLength = AllImage.length;
 
-  useEffect(() => {
-    console.log(Current);
-    const Interval = setTimeout(() => {
-      setCurrent(Current);
-    }, 10000);
-
-    return () => {
-      clearTimeout(Interval);
-    };
-  }, [Current]);
-
   const HandleClickPrev = (prev) => {
+    setTimeout(() => {}, 3000);
     setCurrent(Current === 0 ? ArrLLength - 1 : prev - 1);
   };
 
   const HandleClickNext = (next) => {
     setCurrent(Current === ArrLLength - 1 ? 0 : next + 1);
   };
+
+  useEffect(() => {
+    const Interval = setInterval(() => {
+      return setCurrent((n) =>
+        n > Current ? AllImage[Current] : n === AllImage.length - 1 ? 0 : n + 1
+      );
+    }, 3000);
+
+    // console.log  (Current);
+    return () => {
+      clearTimeout(Interval);
+    };
+  }, [Current]);
 
   if (!Array.isArray(AllImage) || ArrLLength <= 0) {
     return null;
