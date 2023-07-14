@@ -5,25 +5,55 @@
 }
 
 .Desc__cont{
-    margin: 5px;
-    padding: 5%;
+    margin: -6%;
+    /* margin-bottom: -15%; */
+    padding: 2%;
 }
 
 .Home__cont {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
   /* column-gap: 11%; */
 }
 
 .Img__cont {
-  width: 300%;
-  height: 500%;
+  width: 100%;
+  height: 575px;
+  /* border: 0.2px solid transparent; */
 }
 
 .Chair__image {
   width: 100%;
-  height: 200%;
+  /* height: 500px; */
   overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.Shop__btn{
+  width: 20%;
+    border:none;
+    background: transparent;
+    font-weight: 900;
+    font-size: 30px;
+    color: rgb(252, 44, 44);
+    border: 2px solid transparent;
+    transition: 0.5s ease;
+}
+
+.Shop__btn:hover{
+width: 290px;
+border-bottom: 2px solid rgb(213, 47, 47);
+cursor: pointer;
+}
+
+.btn__img{
+    margin:  auto  auto 0 0 ;
+    position:static ;
+    height:90px;
+    width: 90px;
+    padding: 1.5%;
+    border:none;
 }
