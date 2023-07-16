@@ -4,14 +4,15 @@ import LeftArrow from "../../assets/images/icon-angle-left.svg";
 import RightArrow from "../../assets/images/icon-angle-right.svg";
 import "./HomePage.css";
 import { useEffect, useState } from "react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const HomePage = () => {
   const [Current, setCurrent] = useState(0);
+  const [Loading, setLoading] = useState(true);
 
   const ArrLLength = AllImage.length;
 
   const HandleClickPrev = (prev) => {
-    setTimeout(() => {}, 3000);
     setCurrent(Current === 0 ? ArrLLength - 1 : prev - 1);
   };
 
@@ -29,6 +30,9 @@ const HomePage = () => {
     // console.log  (Current);
     return () => {
       clearTimeout(Interval);
+      setTimeout(() => {
+        return setLoading(false);
+      }, 3000);
     };
   }, [Current]);
 
@@ -39,41 +43,44 @@ const HomePage = () => {
   return (
     <>
       <div>
-      
+        <NavBar />
       </div>
-      <NavBar />
+
       <span className="Home__cont">
-      
-        <div className="Img__cont">
-          {AllImage.map((img, index) => {
-            return (
-              <div key={index}>
-                {index === Current && (
-                  <img
-                    src={img.ImageC}
-                    alt="Chair Image"
-                    className="Chair__image"
-                  />
-                )}
-              </div>
-            );
-          })}
-        </div>
+        {Loading ? (
+          <AiOutlineLoading3Quarters />
+        ) : (
+          <div className="Img__cont">
+            {AllImage.map((img, index) => {
+              return (
+                <div key={index}>
+                  {index === Current && (
+                    <img
+                      src={img.ImageC}
+                      alt="Chair Image"
+                      className="Chair__image"
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        )}
         <>
-        <button
-          style={{ background: "black" }}
-          onClick={() => HandleClickPrev(Current)}
-          className="btn__img"
-        >
-          <img src={LeftArrow} alt="" />
-        </button>
-        <button
-          style={{ background: "black" }}
-          onClick={() => HandleClickNext(Current)}
-          className="btn__img"
-        >
-          <img src={RightArrow} alt="" />
-        </button>
+          <button
+            style={{ background: "black" }}
+            onClick={() => HandleClickPrev(Current)}
+            className="btn__img"
+          >
+            <img src={LeftArrow} alt="" />
+          </button>
+          <button
+            style={{ background: "black" }}
+            onClick={() => HandleClickNext(Current)}
+            className="btn__img"
+          >
+            <img src={RightArrow} alt="" />
+          </button>
         </>
         <div className="Desc__cont">
           <div>
@@ -94,7 +101,12 @@ const HomePage = () => {
                 you love.
               </span>
               <br />
-              <div  className="Shop__btn">S H O P   N O W <span style={{fontSize:"50px",color: "#ff0000"}}>&#8594;</span> </div>
+              <div className="Shop__btn">
+                S H O P N O W{" "}
+                <span style={{ fontSize: "50px", color: "#ff0000" }}>
+                  &#8594;
+                </span>{" "}
+              </div>
             </div>
           </div>
         </div>
